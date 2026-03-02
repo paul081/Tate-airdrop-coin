@@ -1,5 +1,5 @@
 export const Icons = {
-  Wallet: () => (
+  Wallet: ({ className }: { className?: string }) => (
     <svg
       width="24"
       height="24"
@@ -9,12 +9,13 @@ export const Icons = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
       <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
     </svg>
   ),
-  Shield: () => (
+  Shield: ({ className }: { className?: string }) => (
     <svg
       width="24"
       height="24"
@@ -24,11 +25,12 @@ export const Icons = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
     </svg>
   ),
-  Lock: () => (
+  Lock: ({ className }: { className?: string }) => (
     <svg
       width="24"
       height="24"
@@ -38,6 +40,7 @@ export const Icons = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
       <path d="m7 11V7a5 5 0 0 1 10 0v4" />
@@ -86,7 +89,7 @@ export const Icons = {
       <path d="m9 18 6-6-6-6" />
     </svg>
   ),
-  Zap: () => (
+  Zap: ({ className }: { className?: string }) => (
     <svg
       width="24"
       height="24"
@@ -96,6 +99,7 @@ export const Icons = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
     </svg>
@@ -195,7 +199,7 @@ export const Icons = {
       <path d="m9 11 3 3L22 4" />
     </svg>
   ),
-  Gift: () => (
+  Gift: ({ className }: { className?: string }) => (
     <svg
       width="24"
       height="24"
@@ -205,6 +209,7 @@ export const Icons = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <rect x="3" y="8" width="18" height="4" rx="1" />
       <path d="M12 8v13" />
@@ -319,7 +324,7 @@ export const Icons = {
       <path d="m6 9 6 6 6-6" />
     </svg>
   ),
-  X: () => (
+  X: ({ className }: { className?: string }) => (
     <svg
       width="24"
       height="24"
@@ -329,9 +334,73 @@ export const Icons = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
+    </svg>
+  ),
+  Solana: ({ className }: { className?: string }) => (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 448 512"
+      fill="none"
+      className={className}
+    >
+      <path
+        fill="url(#solana-grad)"
+        d="M0 72.3c0-3.5 2.8-6.3 6.3-6.3h435.5c3.5 0 6.3 2.8 6.3 6.3v41.3c0 3.5-2.8 6.3-6.3 6.3H6.3c-3.5 0-6.3-2.8-6.3-6.3V72.3zm441.7 126.5c3.5 0 6.3 2.8 6.3 6.3v41.3c0 3.5-2.8 6.3-6.3 6.3H6.3c-3.5 0-6.3-2.8-6.3-6.3v-41.3c0-3.5 2.8-6.3 6.3-6.3h435.4zm0 167.6c3.5 0 6.3 2.8 6.3 6.3v41.3c0 3.5-2.8 6.3-6.3 6.3H6.3c-3.5 0-6.3-2.8-6.3-6.3v-41.3c0-3.5 2.8-6.3 6.3-6.3h435.4z"
+      />
+      <defs>
+        <linearGradient
+          id="solana-grad"
+          x1="441.3"
+          x2="10.4"
+          y1="403.2"
+          y2="101"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stopColor="#00ffa3" />
+          <stop offset="0.35" stopColor="#dc1fff" />
+          <stop offset="1" stopColor="#00ffa3" />
+        </linearGradient>
+      </defs>
+    </svg>
+  ),
+  USDC: ({ className }: { className?: string }) => (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+    >
+      <circle cx="12" cy="12" r="12" fill="#2775CA" />
+      <path
+        fill="white"
+        d="M12 4.4c-4.2 0-7.6 3.4-7.6 7.6s3.4 7.6 7.6 7.6 7.6-3.4 7.6-7.6-3.4-7.6-7.6-7.6zm3.3 11l-.8 1.3c-1.1-.7-1.9-1-2.9-1-1.3 0-2 .6-2 1.4 0 .8.5 1.2 1.8 1.6 2.1.6 3.1 1.4 3.1 3 0 1.8-1.5 3.2-3.8 3.2-1.5 0-2.8-.5-3.8-1.2l.8-1.3c1 .6 2 1.1 3.1 1.1 1.3 0 2.2-.6 2.2-1.5 0-.9-.6-1.3-2.1-1.8-1.9-.6-2.9-1.4-2.9-2.9 0-1.7 1.4-3.1 3.6-3.1 1.3-.1 2.5.4 3.7 1.3z"
+        transform="scale(0.5) translate(12, 12)"
+      />
+    </svg>
+  ),
+  USDC_SOL: ({ className }: { className?: string }) => (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+    >
+      <circle cx="12" cy="12" r="11" fill="#2775CA" />
+      <circle cx="12" cy="12" r="9" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
+      <path
+        fill="white"
+        d="M12 6v12M9 9h6M9 13h6"
+        stroke="white"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
     </svg>
   ),
 }

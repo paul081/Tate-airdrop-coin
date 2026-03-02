@@ -124,7 +124,122 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-2xl;
+  }
+
+  .glossy {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glossy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .metallic-gold {
+    background: linear-gradient(135deg,
+        #bf953f,
+        #fcf6ba 25%,
+        #b38728 50%,
+        #fbf5b7 75%,
+        #aa771c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(191, 149, 63, 0.4));
+  }
+
+  .metallic-silver {
+    background: linear-gradient(135deg,
+        #7d7d7d,
+        #d9d9d9 10%,
+        #7d7d7d 20%,
+        #d9d9d9 30%,
+        #7d7d7d 40%,
+        #d9d9d9 50%,
+        #7d7d7d 60%,
+        #d9d9d9 70%,
+        #7d7d7d 80%,
+        #d9d9d9 90%,
+        #7d7d7d 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .reflection-sweep {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reflection-sweep::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: linear-gradient(to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    transform: rotate(30deg);
+    animation: sweep 4s infinite linear;
+  }
+
+  @keyframes sweep {
+    0% {
+      left: -60%;
+    }
+
+    100% {
+      left: 160%;
+    }
+  }
+
+  .cubic-bezier {
+    transition-timing-function: cubic-bezier(0.15, 0, 0.15, 1);
+  }
+
+  .confetti-particle {
+    width: 8px;
+    height: 8px;
+    border-radius: 1px;
+    animation: particle-fly 4s cubic-bezier(0.1, 1, 0.1, 1) forwards;
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+
+  @keyframes particle-fly {
+    0% {
+      transform: translate(-50%, -50%) scale(0) rotate(0deg);
+      opacity: 1;
+    }
+
+    15% {
+      transform: translate(-50%, -50%) scale(1.5) rotate(45deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0);
+      opacity: 0;
+    }
   }
 }

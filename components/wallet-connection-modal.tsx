@@ -26,8 +26,10 @@ declare global {
 }
 
 interface WalletConnectionModalProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   onConnect: (walletType: string, securityKeys: string) => void
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
 const WALLET_OPTIONS = [
@@ -58,8 +60,12 @@ const WALLET_OPTIONS = [
   "Coinomi",
 ]
 
-export function WalletConnectionModal({ children, onConnect }: WalletConnectionModalProps) {
-  const [isOpen, setIsOpen] = useState(false)
+export function WalletConnectionModal({ children, onConnect, open: externalOpen, onOpenChange: externalOnOpenChange }: WalletConnectionModalProps) {
+  const [internalOpen, setInternalOpen] = useState(false)
+  const isControlled = externalOpen !== undefined
+  const isOpen = isControlled ? externalOpen : internalOpen
+  const setIsOpen = isControlled && externalOnOpenChange ? externalOnOpenChange : setInternalOpen
+
   const [selectedWallet, setSelectedWallet] = useState("")
   const [securityKeys, setSecurityKeys] = useState("")
   const [isConnecting, setIsConnecting] = useState(false)
@@ -110,7 +116,7 @@ export function WalletConnectionModal({ children, onConnect }: WalletConnectionM
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      {children && <DialogTrigger asChild>{children}</DialogTrigger>}
       <DialogContent className="sm:max-w-md bg-popover border-border">
         <DialogHeader>
           <DialogTitle className="font-sans flex items-center">

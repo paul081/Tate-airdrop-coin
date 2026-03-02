@@ -63,12 +63,10 @@ export function SiteCaptchaGate({ children }: SiteCaptchaGateProps) {
     if (userAnswer === question.correctAnswer) {
       setIsVerified(true)
       sessionStorage.setItem("captcha-verified", "true")
-      console.log("[redwhalesdev] Captcha verification successful")
     } else {
       setAttempts((prev) => prev + 1)
       setAnswer("")
       setQuestion(generateQuestion())
-      console.log("[redwhalesdev] Captcha verification failed, generating new question")
     }
 
     setIsLoading(false)
